@@ -96,6 +96,9 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
 .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
 .card .btns{display:flex;flex-direction:column;gap:10px;margin-top:4px}
 .eyebrow{font-family:var(--display);font-size:13px;letter-spacing:.2em;color:var(--muted)}
+.bill{display:flex;align-items:center;gap:10px;margin:-4px 0 -6px;font-family:var(--display);font-size:13px;letter-spacing:.5em;color:var(--muted)}
+.bill::before,.bill::after{content:"";flex:1;border-top:1px solid var(--line)}
+.bill span{padding-left:.5em}
 
 /* タイトル：吊り看板 */
 .sign{position:relative;margin:12px 4px 12px;padding:13px 10px 11px;border-radius:8px;
@@ -214,6 +217,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
   <div class="card receipt">
     <div class="rc-scroll">
       <div class="eyebrow">STAGE <span id="clearNo"></span></div>
+      <div class="bill"><span>お会計</span></div>
       <h2>クリア！</h2>
       <div class="stars" id="clearStars"></div>
       <hr class="dash">
@@ -574,7 +578,8 @@ function show(id){ for(const o of ['ovStart','ovClear','ovOver','ovRank']) $(o).
 function stageClear(){
   G.playing=false;
   $('clearNo').textContent=G.stage;
-  $('clearStars').innerHTML='★'.repeat(G.hearts)+'<span class="off">'+'★'.repeat(3-G.hearts)+'</span>';
+  const stars=Math.max(0,3-G.misses); // ノーミス★3／1ミス★2／2ミス★1
+  $('clearStars').innerHTML='★'.repeat(stars)+'<span class="off">'+'★'.repeat(3-stars)+'</span>';
   $('clStage').textContent='+'+G.stageScore.toLocaleString()+'点';
   $('clTotal').textContent=G.score.toLocaleString()+'点';
   $('clCombo').textContent=G.maxCombo;
