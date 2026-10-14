@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>シュウサクラッシュ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +22,9 @@
   --display:"Yusei Magic","Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;
 }
 html,body{height:100%}
+/* iPhoneのダブルタップ拡大・長押しメニュー・引っぱりスクロールを止める */
+html,body,*{touch-action:manipulation}
+html,body{overscroll-behavior:none;-webkit-touch-callout:none;-webkit-text-size-adjust:100%}
 [hidden]{display:none!important}
 body{margin:0;color:var(--ink);font-family:var(--font);overflow:hidden;
   background-color:var(--table);
@@ -240,6 +243,17 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
 
 <script>
 (()=>{
+/* iPhoneのズーム防止：ピンチ（2本指）と、すばやい2回タップでの拡大を止める */
+document.addEventListener('gesturestart',e=>e.preventDefault(),{passive:false});
+document.addEventListener('gesturechange',e=>e.preventDefault(),{passive:false});
+document.addEventListener('dblclick',e=>e.preventDefault(),{passive:false});
+document.addEventListener('touchmove',e=>{ if(e.touches.length>1) e.preventDefault(); },{passive:false});
+let lastTouchEnd=0;
+document.addEventListener('touchend',e=>{
+  const now=Date.now(), t=e.target;
+  if(now-lastTouchEnd<350&&!(t.closest&&t.closest('button,input,a'))) e.preventDefault();
+  lastTouchEnd=now;
+},{passive:false});
 const DIRS=[[0,-1],[1,0],[0,1],[-1,0]];
 const $=id=>document.getElementById(id);
 const cv=$('cv'), ctx=cv.getContext('2d');
