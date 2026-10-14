@@ -98,7 +98,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
 .eyebrow{font-family:var(--display);font-size:13px;letter-spacing:.2em;color:var(--muted)}
 
 /* タイトル：吊り看板 */
-.sign{position:relative;margin:14px 4px 4px;padding:16px 10px 14px;border-radius:8px;
+.sign{position:relative;margin:12px 4px 2px;padding:13px 10px 11px;border-radius:8px;
   background:
     repeating-linear-gradient(177deg,rgba(255,255,255,.08) 0 2px,transparent 2px 8px,rgba(0,0,0,.07) 8px 9px,transparent 9px 15px),
     linear-gradient(180deg,var(--oak-light),var(--oak) 60%,var(--oak-dark));
@@ -109,11 +109,12 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
 .sign h1{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(20px,7.2vw,34px);letter-spacing:.03em;white-space:nowrap;
   color:var(--paper);text-shadow:0 2px 0 rgba(58,30,12,.55)}
 .sign span{display:block;margin-top:2px;font-size:11px;letter-spacing:.3em;color:var(--kraft);font-weight:700}
-.rules{text-align:left;display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none;font-size:13px;line-height:1.55}
+.rules{text-align:left;display:flex;flex-direction:column;gap:16px;margin:0;padding:0;list-style:none;font-size:13px;line-height:1.55}
 .rules li{display:flex;gap:10px;align-items:flex-start}
 .rules li>div{min-width:0}
 .rules b{display:block;font-weight:900;font-size:14.5px;color:var(--oak-dark)}
-.rules .note{display:block;margin-top:3px;padding:3px 8px;border-radius:6px;background:var(--kraft);color:var(--muted);font-size:12px;line-height:1.5}
+.rules .note{display:block;margin-top:5px;color:#A8927C;font-size:11.5px;line-height:1.5;font-weight:500}
+.rules .cta{display:block;margin-top:9px;color:var(--accent);font-size:13.5px;line-height:1.7;font-weight:900}
 .rules span{flex:none;width:24px;height:24px;border-radius:50%;background:var(--oak);color:var(--paper);display:grid;place-items:center;
   font-family:var(--display);font-size:13px;margin-top:1px}
 .best{font-family:var(--display);color:var(--accent)!important}
@@ -157,6 +158,14 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
 .entry input:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
 .entry .row button{flex:none}
 .msg{font-size:13px;color:var(--muted)}
+@media (max-height:720px){
+  .card{padding:16px 16px}
+  .sign{padding:10px 8px 9px}
+  .sign h1{font-size:clamp(20px,6.6vw,30px)}
+  .rules{gap:12px;font-size:12.5px;line-height:1.5}
+  .rules b{font-size:14px}
+  .rules .cta{margin-top:7px;line-height:1.6}
+}
 </style>
 
 <div class="app">
@@ -182,7 +191,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
     <ul class="rules">
       <li><span>1</span><div><b>矢印をタップ！</b>向いている方へスルスル進むよ。前があいていれば成功、ほかの矢印にぶつかるとハートが1つ減っちゃう。ハートは3つだけ。次のステージでも回復しないから気をつけて！<small class="note">☕ マスターいわく「最初の1本で全部決まる」らしい。</small></div></li>
       <li><span>2</span><div><b>リズムよくコンボ！</b>1本1点、3秒以内に次を決めればコンボ継続。5本ごとに倍率アップ。ミスか3秒ストップでリセット。<small class="note">☕ ハイスコアが出たタイミングで、店にお客さんが来るってウワサ。</small></div></li>
-      <li><span>3</span><div><b>ノーミスで技解放！</b>10連続で「クラッシュ」、50連続で「ブレイク」。一気に矢印を片づけろ！<small class="note">☕ さあ！ハイスコアを出して、カフェオーガスタにお客さんを呼びこもう！</small></div></li>
+      <li><span>3</span><div><b>ノーミスで技解放！</b>10連続で「クラッシュ」、50連続で「ブレイク」。一気に矢印を片づけろ！<small class="cta">☕ さあ！ハイスコアを出して、カフェオーガスタにお客さんを呼びこもう！</small></div></li>
     </ul>
     <p id="bestTxt"></p>
     <div class="btns">
