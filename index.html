@@ -146,8 +146,11 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
 .chalk{background:radial-gradient(120% 120% at 30% 10%,#3A483F,var(--chalk-bg) 70%);color:var(--chalk);border-radius:6px;padding:12px 12px 10px;
   border:4px solid var(--oak);box-shadow:inset 0 0 14px rgba(0,0,0,.4)}
 .chalk h3{margin:0 0 8px;font-family:var(--display);font-weight:400;font-size:17px;letter-spacing:.08em}
-.rank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;text-align:left;font-size:14px}
-.rank li{display:grid;grid-template-columns:2.4em 1fr auto;gap:8px;align-items:baseline;padding:5px 6px;border-bottom:1px dashed rgba(241,238,228,.18)}
+.rank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;text-align:left;font-size:14px;position:relative}
+.rank.many{max-height:calc(var(--rowh) * 10 + 2px * 9);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(241,238,228,.35) transparent}
+.chalk{--rowh:43px}
+.more{margin:6px 0 0;text-align:center;font-size:11px;color:var(--chalk-dim);letter-spacing:.05em}
+.rank li{display:grid;grid-template-columns:2.4em 1fr auto;gap:8px;align-items:baseline;padding:5px 6px;box-sizing:border-box;min-height:var(--rowh);flex:none;border-bottom:1px dashed rgba(241,238,228,.18)}
 .rank li:last-child{border-bottom:0}
 .rank li b{font-family:var(--display);font-weight:400;font-variant-numeric:tabular-nums;color:var(--chalk-dim)}
 .rank li:nth-child(1) b{color:#F3C95A}.rank li:nth-child(2) b{color:#D9DDE0}.rank li:nth-child(3) b{color:#E3A06B}
@@ -212,7 +215,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
 
 <div class="overlay" id="ovRank" hidden>
   <div class="card">
-    <div class="chalk"><h3>ランキング TOP10</h3><ol class="rank" id="rankList"></ol></div>
+    <div class="chalk"><h3>ランキング <span class="topn">TOP10</span></h3><ol class="rank" id="rankList"></ol><p class="more" hidden>11位以下は表の中をスクロール</p></div>
     <div class="btns"><button class="ghost" id="rankClose" type="button">もどる</button></div>
   </div>
 </div>
@@ -254,7 +257,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
         </div>
       </div>
       <p class="msg" id="entryMsg" hidden></p>
-      <div class="chalk"><h3>ランキング TOP10</h3><ol class="rank" id="rankOver"></ol></div>
+      <div class="chalk"><h3>ランキング <span class="topn">TOP10</span></h3><ol class="rank" id="rankOver"></ol><p class="more" hidden>11位以下は表の中をスクロール</p></div>
       <div class="btns">
         <button class="primary" id="fromOneBtn" type="button">ステージ1から</button>
       </div>
@@ -611,15 +614,17 @@ $('rankClose').onclick=()=>show('ovStart');
 
 /* ---------- ランキング（Googleスプレッドシートに保存・全員で共有） ---------- */
 const GAS_URL='https://script.google.com/macros/s/AKfycbwIH7FhD-3jVUgxVVrXItXeisyh3ujA2h1ScfqwVe9w-0-SsawwZWHKCCX_y1-c93R5pw/exec';
-let RANK=[], rankState='loading', FIN=null;
+let RANK=[], rankState='loading', FIN=null, LIMIT=10; // LIMIT＝ランキングに載る人数（Google側の設定に合わせて自動で変わる）
 function cleanName(s){ return String(s||'').replace(/[\u0000-\u001f\u007f]/g,'').trim().slice(0,10); }
-function setRank(list){
-  RANK=(list||[]).map(v=>({id:String(v.id),name:cleanName(v.name),score:Math.max(0,Math.floor(Number(v.score)||0)),stage:Math.max(1,Math.floor(Number(v.stage)||1))}));
+function setRank(list,limit){
+  if(limit) LIMIT=Math.max(1,Math.floor(Number(limit))||10);
+  RANK=(list||[]).slice(0,LIMIT).map(v=>({id:String(v.id),name:cleanName(v.name),score:Math.max(0,Math.floor(Number(v.score)||0)),stage:Math.max(1,Math.floor(Number(v.stage)||1))}));
   rankState='ok';
 }
 function renderRank(){
   for(const id of ['rankList','rankOver']){
     const ol=$(id); ol.textContent='';
+    ol.classList.toggle('many',RANK.length>10); ol.nextElementSibling.hidden=!(rankState==='ok'&&RANK.length>10);
     if(rankState!=='ok'||!RANK.length){
       const li=document.createElement('li'); li.className='empty';
       li.textContent=rankState==='loading'?'読み込み中…':rankState==='off'?'ランキングを読み込めませんでした':'まだ記録がありません';
@@ -634,8 +639,16 @@ function renderRank(){
       li.append(n,nm,sc); ol.appendChild(li);
     });
   }
+  document.querySelectorAll('.topn').forEach(e=>e.textContent='TOP'+LIMIT);
+  scrollToMe();
 }
-function qualifies(score){ return score>0&&(RANK.length<10||score>RANK[RANK.length-1].score); }
+function scrollToMe(){ // 自分の記録が11位以下なら、表の中をそこまでスクロール
+  requestAnimationFrame(()=>{ for(const id of ['rankList','rankOver']){
+    const ol=$(id), me=ol.querySelector('li.me');
+    if(me&&ol.classList.contains('many')&&ol.clientHeight) ol.scrollTop=Math.max(0,me.offsetTop-ol.clientHeight/2+me.offsetHeight/2);
+  }});
+}
+function qualifies(score){ return score>0&&(RANK.length<LIMIT||score>RANK[RANK.length-1].score); }
 function checkEntry(){
   const show=!!FIN&&!FIN.done&&rankState==='ok'&&qualifies(FIN.score);
   $('entry').hidden=!show;
@@ -644,7 +657,7 @@ async function loadRank(){
   try{
     const r=await fetch(GAS_URL,{cache:'no-store'}); const j=await r.json();
     if(!j||!j.ok) throw new Error('bad');
-    setRank(j.ranking);
+    setRank(j.ranking,j.limit);
   }catch(e){ if(rankState!=='ok') rankState='off'; }
   renderRank(); checkEntry();
 }
@@ -659,7 +672,7 @@ $('saveBtn').onclick=async()=>{
       body:JSON.stringify({name,score:FIN.score,stage:FIN.stage})});
     const j=await r.json();
     if(!j||!j.ok) throw new Error('bad');
-    FIN.done=true; FIN.myId=j.id; setRank(j.ranking); m.textContent='登録しました';
+    FIN.done=true; FIN.myId=j.id; setRank(j.ranking,j.limit); m.textContent='登録しました';
     checkEntry(); renderRank();
   }catch(e){
     m.textContent='通信に失敗しました。もう一度「登録」を押してください';
