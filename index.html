@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>シュウサクラッシュ</title>
+<title>シュウサクラッシュ2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
@@ -8,13 +8,13 @@
    Deliberately one look (warm cafe interior), so no dark variant. */
 :root{
   color-scheme:light;
-  --table:#5E3C26; --table-dark:#3F2717;
-  --oak:#A9744A; --oak-light:#C8986A; --oak-dark:#7A4F2F;
-  --tray:#F2E2C6; --rim:#B98556; --grain:#D9BE97;
-  --paper:#FBF5EA; --kraft:#E9D9BF;
-  --ink:#35251A; --muted:#8A715C; --line:#CDB08A;
-  --chalk-bg:#2F3B33; --chalk:#F1EEE4; --chalk-dim:#AFB8AE;
-  --accent:#3E6A47; --accent-ink:#FBF5EA;
+  --table:#503121; --table-dark:#352011;
+  --oak:#A06C43; --oak-light:#C28E60; --oak-dark:#6E4628;
+  --tray:#EFDCBC; --rim:#B98556; --grain:#D9BE97;
+  --paper:#F7EDDA; --kraft:#E4CFAC;
+  --ink:#33231A; --muted:#84684F; --line:#C3A27A;
+  --chalk-bg:#2A3936; --chalk:#F1EEE4; --chalk-dim:#AFB8AE;
+  --accent:#35614A; --accent-ink:#FBF5EA;
   --danger:#C2412F; --heart:#E05A4E;
   --crash:#E9A92A; --crash-ink:#3A2500; --break:#B92F2A; --break-ink:#FFF4EC;
   --a1:#3A2416; --a2:#4C6B2C; --a3:#8E2E46; --a4:#34467A; --a5:#2B6A64; --a6:#A3501A;
@@ -50,7 +50,7 @@ body{margin:0;color:var(--ink);font-family:var(--font);overflow:hidden;
 .hearts{display:flex;gap:3px}
 .hearts svg{width:24px;height:24px;transition:transform .2s,opacity .2s}
 .hearts svg.lost{opacity:.25;transform:scale(.8)}
-.sub{display:flex;justify-content:space-between;align-items:center;min-height:28px;font-size:13px;color:var(--kraft);font-weight:700}
+.sub{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;justify-content:space-between;align-items:center;min-height:28px;font-size:13px;color:var(--kraft);font-weight:700}
 .sub b{color:var(--paper);font-variant-numeric:tabular-nums;font-size:15px}
 .combo{font-weight:900;color:var(--ink);background:var(--paper);border-radius:4px 12px 12px 4px;padding:3px 12px 6px 16px;
   font-variant-numeric:tabular-nums;position:relative;overflow:hidden;box-shadow:0 2px 0 rgba(0,0,0,.25)}
@@ -75,7 +75,7 @@ button:active:not(:disabled){transform:translateY(3px);box-shadow:inset 0 0 0 1.
 button small{font-size:11px;font-weight:700;opacity:.85}
 button:focus-visible{outline:3px solid var(--paper);outline-offset:2px}
 button:disabled{filter:saturate(.5) brightness(.85);opacity:.7;cursor:default}
-button.primary{background:linear-gradient(180deg,#4F7F58,var(--accent));box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.18),0 4px 0 #2A4A31,0 6px 10px rgba(0,0,0,.25)}
+button.primary{background:linear-gradient(180deg,#467656,var(--accent));box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.18),0 4px 0 #2A4A31,0 6px 10px rgba(0,0,0,.25)}
 button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shadow:inset 0 0 0 1.5px var(--line),0 3px 0 var(--line)}
 .bar{display:flex;gap:10px;padding-bottom:4px}
 .bar button{padding-inline:8px;min-width:0}
@@ -87,7 +87,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
 
 /* 重なる画面 */
 .overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(38,22,12,.62);backdrop-filter:blur(3px);
+  background:rgba(33,17,9,.68);backdrop-filter:blur(3px);
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));z-index:5}
 .card{background:var(--paper);border-radius:6px;padding:22px 20px;width:100%;max-width:360px;max-height:90%;overflow:auto;
   display:flex;flex-direction:column;gap:12px;text-align:center;box-sizing:border-box;position:relative;
@@ -118,7 +118,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
 .rules li{display:flex;gap:10px;align-items:flex-start}
 .rules li>div{min-width:0}
 .rules b{display:block;font-weight:900;font-size:14.5px;color:var(--oak-dark)}
-.rules .note{display:block;margin-top:5px;color:#A8927C;font-size:11.5px;line-height:1.5;font-weight:500}
+.rules .note{display:block;margin-top:5px;color:#A1866B;font-size:11.5px;line-height:1.5;font-weight:500}
 .card p.cta{margin:2px 0 0;text-align:center;color:var(--ink);font-size:13px;line-height:1.7;font-weight:900}
 .rules span{flex:none;width:24px;height:24px;border-radius:50%;background:var(--oak);color:var(--paper);display:grid;place-items:center;
   font-family:var(--display);font-size:13px;margin-top:1px}
@@ -175,6 +175,33 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
   .card p.cta{font-size:12.5px;line-height:1.6}
   .card p.lead{font-size:11.5px;line-height:1.6;margin:-4px 0 0}
 }
+.sub .cbox{display:flex;justify-content:flex-end}
+.timer{font-family:var(--display);font-size:20px;line-height:1;color:var(--chalk);background:var(--chalk-bg);border:3px solid var(--oak);border-radius:8px;padding:4px 12px;font-variant-numeric:tabular-nums;box-shadow:0 2px 0 var(--oak-dark)}
+.timer.warn{color:#FFB4A8;animation:tblink 1s steps(2,start) infinite}
+@keyframes tblink{50%{color:var(--chalk)}}
+@media (prefers-reduced-motion: reduce){.timer.warn{animation:none}}
+/* 看板に後から打ち付けた「2」の小さな板 */
+.sign h1{padding-right:1.1em}
+.sign .two{position:absolute;top:-16px;right:-10px;width:1.55em;height:1.55em;display:grid;place-items:center;
+  font-size:clamp(22px,7.6vw,34px);line-height:1;color:#FFF6E6;text-shadow:0 2px 0 rgba(60,10,10,.5);
+  background:repeating-linear-gradient(176deg,rgba(255,255,255,.08) 0 2px,transparent 2px 7px,rgba(0,0,0,.08) 7px 8px,transparent 8px 12px),linear-gradient(180deg,#A8493A,#7A2E22);
+  border-radius:6px;transform:rotate(9deg);box-shadow:inset 0 0 0 2px rgba(255,255,255,.18),0 4px 0 #4A1C14,0 6px 10px rgba(0,0,0,.35);padding-left:.12em;box-sizing:border-box}
+.sign .two::before,.sign .two::after{content:"";position:absolute;width:5px;height:5px;border-radius:50%;background:#3a2414;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.sign .two::before{top:5px;left:5px}.sign .two::after{bottom:5px;right:5px}
+/* 1へ行く小さな看板 */
+a.minisign{align-self:center;position:relative;margin-top:10px;display:flex;flex-direction:column;align-items:center;gap:1px;text-decoration:none;
+  padding:6px 18px 5px;border-radius:6px;color:#FBF5EA;
+  background:repeating-linear-gradient(177deg,rgba(255,255,255,.08) 0 2px,transparent 2px 8px,rgba(0,0,0,.07) 8px 9px,transparent 9px 15px),linear-gradient(180deg,#C8986A,#A9744A 60%,#7A4F2F);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.15),0 3px 0 #3F2717,0 5px 8px rgba(0,0,0,.25)}
+a.minisign::before,a.minisign::after{content:"";position:absolute;top:-10px;width:1.5px;height:11px;background:var(--ink);opacity:.55}
+a.minisign::before{left:24%;transform:rotate(-14deg)} a.minisign::after{right:24%;transform:rotate(14deg)}
+a.minisign b{font-family:var(--display);font-weight:400;font-size:16px;letter-spacing:.04em;text-shadow:0 1px 0 rgba(58,30,12,.55)}
+a.minisign small{font-size:10px;letter-spacing:.2em;color:#E9D9BF;font-weight:700}
+a.minisign:active{transform:translateY(2px)}
+a.minisign:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+a.btnlink{display:flex;align-items:center;justify-content:center;text-decoration:none;font-weight:900;font-size:15px;border-radius:10px;padding:11px 14px;color:var(--ink);background:transparent;border:1.5px dashed var(--line)}
+a.btnlink:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
 </style>
 
 <div class="app">
@@ -184,8 +211,9 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
     <div class="score"><span class="lbl">SCORE</span><b id="scoreNo">0</b></div>
   </div>
   <div class="sub">
-    <span>のこり <b id="leftNo">0</b> 本</span>
-    <span class="combo" id="combo" hidden></span>
+    <span class="left">のこり <b id="leftNo">0</b> 本</span>
+    <span class="timer" id="timer">2:00</span>
+    <span class="cbox"><span class="combo" id="combo" hidden></span></span>
   </div>
   <div class="board" id="board"><canvas id="cv" aria-label="ゲーム盤"></canvas></div>
   <div class="bar">
@@ -196,12 +224,12 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
 
 <div class="overlay" id="ovStart">
   <div class="card">
-    <div class="sign"><h1>シュウサクラッシュ</h1><span>CAFE AUGUSTA PUZZLE</span></div>
-    <p class="lead">マスターが毎日こっそりハマっていると噂のパズル</p>
+    <div class="sign"><h1>シュウサクラッシュ<span class="two" aria-label="2">2</span></h1><span>CAFE AUGUSTA PUZZLE</span></div>
+    <p class="lead">マスターに有利なルールになって<br>あのシュウサクラッシュが帰ってきた！</p>
     <ul class="rules">
-      <li><span>1</span><div><b>矢印をタップ！</b>向いている方へスルスル進むよ。前があいていれば成功、ほかの矢印にぶつかるとハートが1つ減っちゃう。ハートは3つだけ。次のステージでも回復しないから気をつけて！<small class="note">マスターいわく「最初の1本で全部決まる」らしい。</small></div></li>
-      <li><span>2</span><div><b>リズムよくコンボ！</b>1本1点、3秒以内に次を決めればコンボ継続。5本ごとに倍率アップ。ミスか3秒ストップでリセット。<small class="note">ハイスコアが出たタイミングで、店にお客さんが来るってウワサ。</small></div></li>
-      <li><span>3</span><div><b>ノーミスで技解放！</b>10連続で「クラッシュ」、50連続で「ブレイク」。一気に矢印を片づけろ！</div></li>
+      <li><span>1</span><div><b>矢印をタップ！</b>向いている方へスルスル進むよ。前があいていれば成功、ほかの矢印にぶつかるとハートが1つ減っちゃう。ハートが3つ減るかタイマーが0になるとゲームオーバー！<small class="note">マスターいわく「俺は速度が武器なんや」らしい。</small></div></li>
+      <li><span>2</span><div><b>コンボで点数アップ！</b>素早く連続で次を決めればコンボボーナス！<br>ミスせずコンボを続けるとどんどんボーナスアップ、コンボを繋げて高得点を目指そう！<small class="note">マスターいわく「迷ったら負け」らしい。</small></div></li>
+      <li><span>3</span><div><b>技解放で一気に解除！</b>連続成功で技解放！10連続で「クラッシュ」、50連続で「ブレイク」。<br>一気に矢印を片づけろ！<small class="note">ハイスコアが出たタイミングで、店にお客さんが来るってウワサ。</small></div></li>
     </ul>
     <p class="cta">さあ！ハイスコアを出して、<br>オーガスタにお客さんを呼びこもう！</p>
     <p id="bestTxt"></p>
@@ -209,6 +237,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
       <button class="primary" id="startBtn" type="button">スタート</button>
       <button id="resetBtn" type="button" hidden>ステージ1から始める</button>
       <button class="ghost" id="rankBtn" type="button">ランキング</button>
+      <a class="minisign" id="switchLink" href="./1/"><b>シュウサクラッシュ</b><small>1で遊ぶ</small></a>
     </div>
   </div>
 </div>
@@ -231,6 +260,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
       <div class="stats">
         <div><span>このステージ</span><i></i><b id="clStage"></b></div>
         <div><span>最大コンボ</span><i></i><b id="clCombo"></b></div>
+        <div><span>のこり時間</span><i></i><b id="clTime"></b></div>
       </div>
       <hr class="dash">
       <div class="total"><span>合計スコア</span><b class="big" id="clTotal"></b></div>
@@ -242,8 +272,8 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
 <div class="overlay" id="ovOver" hidden>
   <div class="card receipt">
     <div class="rc-scroll">
-      <div class="eyebrow">GAME OVER</div>
-      <h2>ハートがなくなりました</h2>
+      <div class="eyebrow" id="overEye">GAME OVER</div>
+      <h2 id="overHead">ハートがなくなりました</h2>
       <hr class="dash">
       <div class="stats"><div><span>到達</span><i></i><b id="overTxt"></b></div></div>
       <hr class="dash">
@@ -259,7 +289,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
       <p class="msg" id="entryMsg" hidden></p>
       <div class="chalk"><h3>ランキング <span class="topn">TOP10</span></h3><ol class="rank" id="rankOver"></ol><p class="more" hidden>11位以下は表の中をスクロール</p></div>
       <div class="btns">
-        <button class="primary" id="fromOneBtn" type="button">ステージ1から</button>
+        <button class="primary" id="fromOneBtn" type="button">もう一度遊ぶ</button>
         <button class="ghost" id="toTitleBtn" type="button">タイトルに戻る</button>
       </div>
     </div>
@@ -289,14 +319,15 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
   set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 
-const G={stage:store.get('ae_stage',1),best:store.get('ae_best',0),bestScore:store.get('ae_bestScore',0),
-  score:store.get('ae_score',0),stageStartScore:0,combo:0,maxCombo:0,
-  crashCnt:store.get('ae_crashCnt',0),breakCnt:store.get('ae_breakCnt',0),
-  hasCrash:store.get('ae_hasCrash',false),hasBreak:store.get('ae_hasBreak',false),
-  hearts:store.get('ae_hearts',3),misses:0,hints:2,usedHint:false,usedSkill:false,stageScore:0,
+const G={stage:1,best:store.get('ss2_best',0),bestScore:store.get('ss2_bestScore',0),
+  score:0,stageStartScore:0,combo:0,maxCombo:0,
+  crashCnt:0,breakCnt:0,
+  hasCrash:false,hasBreak:false,
+  hearts:3,timeLeft:120,countdown:0,cdShown:0,endReason:'',misses:0,hints:2,usedHint:false,usedSkill:false,stageScore:0,
   cols:0,rows:0,occ:null,arrows:[],playing:false,ending:false,hintId:-1,hintT:0,
   shake:0,shakeAmp:5,flash:0,slash:-1,parts:[],pops:[]};
-function save(){for(const k of ['stage','score','crashCnt','breakCnt','hasCrash','hasBreak','hearts']) store.set('ae_'+k,G[k]);}
+const TIME_LIMIT=120; // 制限時間（秒）。ここを変えると時間が変わる
+function save(){} // 2は「続きから」なし（毎回最初から）
 
 /* ---------- 効果音（Web Audio） ---------- */
 let AC=null, master=null, noiseBuf=null;
@@ -435,6 +466,19 @@ function startStage(){
   G.playing=true; G.ending=false; G.hintId=-1; G.parts=[]; G.pops=[]; G.slash=-1; G.flash=0;
   save(); hud(); resize();
 }
+
+/* ---------- 時計 ---------- */
+let shownSec=-1;
+function fmt(t){ const s=Math.ceil(Math.max(0,t)); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); }
+function drawTimer(){ const sec=Math.ceil(Math.max(0,G.timeLeft)); if(sec===shownSec) return; shownSec=sec;
+  const t=$('timer'); t.textContent=fmt(G.timeLeft); t.classList.toggle('warn',sec<=10&&sec>0); }
+// 残り10秒からの「ポン」：木琴とは別のやわらかい丸い音。残り3秒だけ少し高くする
+function tick(sec){ if(!audio()) return; const t=AC.currentTime, f=sec<=3?740:587.33;
+  const o=AC.createOscillator(), g=AC.createGain(), lp=AC.createBiquadFilter(); o.type='sine';
+  o.frequency.setValueAtTime(f*1.35,t); o.frequency.exponentialRampToValueAtTime(f,t+0.04);
+  lp.type='lowpass'; lp.frequency.value=2200;
+  g.gain.setValueAtTime(0.0001,t); g.gain.linearRampToValueAtTime(0.28,t+0.006); g.gain.exponentialRampToValueAtTime(0.0001,t+0.22);
+  o.connect(lp); lp.connect(g); g.connect(master); o.start(t); o.stop(t+0.26); }
 
 /* ---------- HUD ---------- */
 const heartSvg='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="var(--heart)" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.5 1.1 4.3 2.4.8-1.3 2.2-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>';
@@ -591,31 +635,37 @@ function stageClear(){
   $('clStage').textContent='+'+G.stageScore.toLocaleString()+'点';
   $('clTotal').textContent=G.score.toLocaleString()+'点';
   $('clCombo').textContent=G.maxCombo;
-  G.best=Math.max(G.best,G.stage); store.set('ae_best',G.best);
-  G.bestScore=Math.max(G.bestScore,G.score); store.set('ae_bestScore',G.bestScore);
+  $('clTime').textContent=fmt(G.timeLeft);
+  G.best=Math.max(G.best,G.stage); store.set('ss2_best',G.best);
+  G.bestScore=Math.max(G.bestScore,G.score); store.set('ss2_bestScore',G.bestScore);
   G.stage++; save(); hud(); show('ovClear');
 }
 function gameOver(){
   seGameOver();
-  G.bestScore=Math.max(G.bestScore,G.score); store.set('ae_bestScore',G.bestScore);
+  const timeUp=G.endReason==='time';
+  $('overEye').textContent=timeUp?'TIME UP':'GAME OVER';
+  $('overHead').textContent=timeUp?'タイムアップ！':'ハートがなくなりました';
+  G.bestScore=Math.max(G.bestScore,G.score); store.set('ss2_bestScore',G.bestScore);
   FIN={score:G.score,stage:G.stage,done:false,myId:null};
   $('overScore').textContent=G.score.toLocaleString()+'点';
   $('overTxt').textContent='STAGE '+G.stage;
   newRun(); save(); hud();
-  $('entryMsg').hidden=true; $('nameIn').value=store.get('ae_name','');
+  $('entryMsg').hidden=true; $('nameIn').value=store.get('ss2_name','');
   renderRank(); checkEntry(); show('ovOver');
 }
-$('startBtn').onclick=()=>{ audio(); show(null); startStage(); };
+function startGame(){ audio(); newRun(); G.timeLeft=TIME_LIMIT; G.endReason=''; shownSec=-1; show(null); startStage(); drawTimer();
+  G.playing=false; G.countdown=3; G.cdShown=0; hud(); }
+$('startBtn').onclick=startGame;
 function newRun(){ G.stage=1; G.score=0; G.combo=0; G.hearts=3; G.crashCnt=0; G.breakCnt=0; G.hasCrash=false; G.hasBreak=false; }
-$('resetBtn').onclick=()=>{ audio(); newRun(); show(null); startStage(); };
+$('resetBtn').onclick=startGame;
 $('nextBtn').onclick=()=>{ G.lastHit=performance.now()/1000; show(null); startStage(); };
-$('fromOneBtn').onclick=()=>{ show(null); startStage(); };
+$('fromOneBtn').onclick=startGame;
 $('rankBtn').onclick=()=>{ renderRank(); show('ovRank'); };
 $('rankClose').onclick=()=>show('ovStart');
 
 /* ---------- ランキング（Googleスプレッドシートに保存・全員で共有） ---------- */
-const GAS_URL='https://script.google.com/macros/s/AKfycbwIH7FhD-3jVUgxVVrXItXeisyh3ujA2h1ScfqwVe9w-0-SsawwZWHKCCX_y1-c93R5pw/exec';
-let RANK=[], rankState='loading', FIN=null, LIMIT=10; // LIMIT＝ランキングに載る人数（Google側の設定に合わせて自動で変わる）
+const GAS_URL='https://script.google.com/macros/s/AKfycbwIH7FhD-3jVUgxVVrXItXeisyh3ujA2h1ScfqwVe9w-0-SsawwZWHKCCX_y1-c93R5pw/exec'; // 1と同じ窓口。2の記録は「?game=2」で2用のシートに分ける
+let RANK=[], rankState=GAS_URL?'loading':'none', FIN=null, LIMIT=10; // LIMIT＝ランキングに載る人数（Google側の設定に合わせて自動で変わる）
 function cleanName(s){ return String(s||'').replace(/[\u0000-\u001f\u007f]/g,'').trim().slice(0,10); }
 function setRank(list,limit){
   if(limit) LIMIT=Math.max(1,Math.floor(Number(limit))||10);
@@ -628,7 +678,7 @@ function renderRank(){
     ol.classList.toggle('many',RANK.length>10); ol.nextElementSibling.hidden=!(rankState==='ok'&&RANK.length>10);
     if(rankState!=='ok'||!RANK.length){
       const li=document.createElement('li'); li.className='empty';
-      li.textContent=rankState==='loading'?'読み込み中…':rankState==='off'?'ランキングを読み込めませんでした':'まだ記録がありません';
+      li.textContent=rankState==='none'?'テスト版のため、ランキングは保存されません':rankState==='loading'?'読み込み中…':rankState==='off'?'ランキングを読み込めませんでした':'まだ記録がありません';
       ol.appendChild(li); continue;
     }
     RANK.forEach((r,i)=>{
@@ -655,9 +705,10 @@ function checkEntry(){
   $('entry').hidden=!show;
 }
 async function loadRank(){
+  if(!GAS_URL){ renderRank(); checkEntry(); return; }
   try{
-    const r=await fetch(GAS_URL,{cache:'no-store'}); const j=await r.json();
-    if(!j||!j.ok) throw new Error('bad');
+    const r=await fetch(GAS_URL+'?game=2',{cache:'no-store'}); const j=await r.json();
+    if(!j||!j.ok||j.game!==2) throw new Error('bad'); // Google側が2に未対応なら登録させない（1の表に混ざるのを防ぐ）
     setRank(j.ranking,j.limit);
   }catch(e){ if(rankState!=='ok') rankState='off'; }
   renderRank(); checkEntry();
@@ -666,13 +717,13 @@ $('saveBtn').onclick=async()=>{
   if(!FIN||FIN.done) return;
   const name=cleanName($('nameIn').value), m=$('entryMsg');
   if(!name){ m.hidden=false; m.textContent='名前を入れてください'; return; }
-  $('saveBtn').disabled=true; store.set('ae_name',name);
+  $('saveBtn').disabled=true; store.set('ss2_name',name);
   m.hidden=false; m.textContent='登録中…';
   try{
     const r=await fetch(GAS_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},
-      body:JSON.stringify({name,score:FIN.score,stage:FIN.stage})});
+      body:JSON.stringify({game:2,name,score:FIN.score,stage:FIN.stage})});
     const j=await r.json();
-    if(!j||!j.ok) throw new Error('bad');
+    if(!j||!j.ok||j.game!==2) throw new Error('bad');
     FIN.done=true; FIN.myId=j.id; setRank(j.ranking,j.limit); m.textContent='登録しました';
     checkEntry(); renderRank();
   }catch(e){
@@ -719,13 +770,25 @@ function update(dt){
   if(G.flash>0) G.flash=Math.max(0,G.flash-dt*1.5);
   if(G.slash>=0){ G.slash+=dt*3.2; if(G.slash>1.6) G.slash=-1; }
   G.hintT+=dt;
+  if(G.countdown>0){ // 開始前の 3・2・1
+    const n=Math.ceil(G.countdown); if(n!==G.cdShown){ G.cdShown=n; if(audio()) mallet(659.25,AC.currentTime,0.35,0.25); }
+    G.countdown-=dt;
+    if(G.countdown<=0){ G.countdown=0; G.goFlash=0.6; G.playing=true; G.lastHit=performance.now()/1000; hud(); if(audio()) mallet(1046.5,AC.currentTime,0.45,0.5); }
+  }
+  if(G.goFlash>0) G.goFlash=Math.max(0,G.goFlash-dt);
+  if(G.playing&&!G.ending&&G.timeLeft>0){ // 時計はプレイ中だけ進む（クリア画面・カウントダウン中は止まる）
+    const before=Math.ceil(G.timeLeft); G.timeLeft-=dt; const after=Math.ceil(Math.max(0,G.timeLeft));
+    if(after<before&&after<=10&&after>0) tick(after);
+    drawTimer();
+    if(G.timeLeft<=0){ G.timeLeft=0; drawTimer(); G.playing=false; G.ending=true; G.endReason='time'; hud(); setTimeout(gameOver,600); }
+  }
   if(G.playing&&G.combo>0){
     const left=COMBO_SEC-(performance.now()/1000-G.lastHit);
     if(left<=0){ G.combo=0; hud(); }
     else { const b=document.getElementById('cbar'); if(b) b.style.transform='scaleX('+(left/COMBO_SEC).toFixed(3)+')'; }
   }
   if(G.arrows.length&&!G.ending){
-    if(G.hearts<=0&&!anyMoving){ G.ending=true; setTimeout(gameOver,350); }
+    if(G.hearts<=0&&!anyMoving){ G.ending=true; G.endReason='heart'; setTimeout(gameOver,350); }
     else if(G.playing&&G.arrows.every(a=>a.mode==='gone')){ G.ending=true; G.playing=false; hud(); setTimeout(stageClear,400); }
   }
 }
@@ -829,6 +892,18 @@ function draw(){
   ctx.globalAlpha=1;
   if(G.flash>0){ ctx.setTransform(dpr,0,0,dpr,0,0);
     ctx.globalAlpha=G.flash*0.85; ctx.fillStyle=G.flash>0.6?'#fff':C.brk; ctx.fillRect(0,0,W,H); ctx.globalAlpha=1; }
+  // 開始前の 3・2・1 と START
+  if(G.countdown>0||G.goFlash>0){
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    const txt=G.countdown>0?String(Math.ceil(G.countdown)):'START!';
+    const k=G.countdown>0?(G.countdown%1||1):G.goFlash/0.6;
+    if(G.countdown>0){ ctx.globalAlpha=0.45; ctx.fillStyle='#2a1a10'; ctx.fillRect(0,0,W,H); }
+    ctx.globalAlpha=Math.min(1,k*1.4); ctx.textAlign='center'; ctx.textBaseline='middle';
+    const fs=Math.round(Math.min(W,H)*(G.countdown>0?0.32:0.16)*(0.85+0.25*k));
+    ctx.font=fs+'px '+getComputedStyle(document.documentElement).getPropertyValue('--display');
+    ctx.lineWidth=Math.max(6,fs*0.08); ctx.strokeStyle=C.ink; ctx.strokeText(txt,W/2,H/2);
+    ctx.fillStyle=G.countdown>0?C.surface:C.crash; ctx.fillText(txt,W/2,H/2); ctx.globalAlpha=1;
+  }
 }
 let last=performance.now();
 function loop(now){ const dt=Math.min(0.05,(now-last)/1000); last=now; update(dt); draw(); requestAnimationFrame(loop); }
