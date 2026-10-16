@@ -260,6 +260,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
       <div class="chalk"><h3>ランキング <span class="topn">TOP10</span></h3><ol class="rank" id="rankOver"></ol><p class="more" hidden>11位以下は表の中をスクロール</p></div>
       <div class="btns">
         <button class="primary" id="fromOneBtn" type="button">ステージ1から</button>
+        <button class="ghost" id="toTitleBtn" type="button">タイトルに戻る</button>
       </div>
     </div>
   </div>
@@ -682,9 +683,13 @@ loadRank();
 const _rankBtn=$('rankBtn').onclick; $('rankBtn').onclick=()=>{ _rankBtn(); loadRank(); };
 const _gameOver=gameOver; gameOver=function(){ _gameOver(); loadRank(); };
 renderRank();
-if(G.stage>1){ $('startBtn').textContent='STAGE '+G.stage+' から続ける'; $('resetBtn').hidden=false; }
-if(G.best) $('bestTxt').classList.add('best'); else $('bestTxt').hidden=true;
-$('bestTxt').textContent=G.best?'最高記録：STAGE '+G.best+' クリア／'+G.bestScore.toLocaleString()+'点':'';
+function refreshTitle(){
+  $('startBtn').textContent=G.stage>1?'STAGE '+G.stage+' から続ける':'スタート'; $('resetBtn').hidden=!(G.stage>1);
+  $('bestTxt').classList.toggle('best',!!G.best); $('bestTxt').hidden=!G.best;
+  $('bestTxt').textContent=G.best?'最高記録：STAGE '+G.best+' クリア／'+G.bestScore.toLocaleString()+'点':'';
+}
+refreshTitle();
+$('toTitleBtn').onclick=()=>{ refreshTitle(); show('ovStart'); };
 
 /* ---------- 更新 ---------- */
 function spawnParts(a,strong){
