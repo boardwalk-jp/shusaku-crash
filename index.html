@@ -128,7 +128,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
 .card.receipt{border-radius:4px 4px 0 0;font-variant-numeric:tabular-nums;padding-bottom:26px;overflow:visible;max-height:none}
 .card.receipt::after{content:"";position:absolute;left:0;right:0;bottom:-11px;height:12px;
   background:linear-gradient(-45deg,transparent 8px,var(--paper) 0) 0 0/16px 12px repeat-x,linear-gradient(45deg,transparent 8px,var(--paper) 0) 0 0/16px 12px repeat-x}
-.rc-scroll{max-height:82vh;overflow:auto;display:flex;flex-direction:column;gap:12px;margin:-4px -6px;padding:4px 6px}
+.rc-scroll{max-height:82vh;max-height:calc(100dvh - 110px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overflow:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:12px;margin:-4px -6px;padding:4px 6px}
 .dash{border:0;border-top:2px dashed var(--line);margin:0;width:100%}
 .stars{font-size:34px;letter-spacing:.12em;color:var(--crash);line-height:1;text-shadow:0 2px 0 rgba(0,0,0,.12)}
 .stars .off{color:var(--line)}
@@ -147,7 +147,7 @@ button.ghost{background:var(--kraft);color:var(--ink);text-shadow:none;box-shado
   border:4px solid var(--oak);box-shadow:inset 0 0 14px rgba(0,0,0,.4)}
 .chalk h3{margin:0 0 8px;font-family:var(--display);font-weight:400;font-size:17px;letter-spacing:.08em}
 .rank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;text-align:left;font-size:14px;position:relative}
-.rank.many{max-height:calc(var(--rowh) * 10 + 2px * 9);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(241,238,228,.35) transparent}
+.rank.many{max-height:calc(var(--rowh) * 10 + 2px * 9);overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:rgba(241,238,228,.35) transparent}
 .chalk{--rowh:43px}
 .more{margin:6px 0 0;text-align:center;font-size:11px;color:var(--chalk-dim);letter-spacing:.05em}
 .rank li{display:grid;grid-template-columns:2.4em 1fr auto;gap:8px;align-items:baseline;padding:5px 6px;box-sizing:border-box;min-height:var(--rowh);flex:none;border-bottom:1px dashed rgba(241,238,228,.18)}
